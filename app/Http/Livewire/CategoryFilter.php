@@ -13,8 +13,9 @@ class CategoryFilter extends Component
 {
 
     use WithPagination;
-    public $category, $subcategoria, $marca, $precio1; //Envio la info de la categoria a la vista.
-
+    public $category, $subcategoria, $marca; //Envio la info de la categoria a la vista.
+    
+    public $view ="grid";
     
     public function limpiar(){
         $this->reset(['subcategoria', 'marca']);
@@ -42,11 +43,6 @@ class CategoryFilter extends Component
                 $query->where('name', $this->marca);
             });   
         }
-
-        if($this->precio1){
-            $productsQuery = Product::where('price' < 50);
-        }
-
 
         $products = $productsQuery->paginate(20);
 

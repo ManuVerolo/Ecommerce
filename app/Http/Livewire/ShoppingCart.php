@@ -19,7 +19,7 @@ class ShoppingCart extends Component
     public function delete($rowId){
         Cart::remove($rowId);
 
-        $this->emitTo('dropdow-cart', 'render');
+        $this->emitTo('dropdown-cart', 'render');
     }
 
     public function render()

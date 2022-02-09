@@ -16,7 +16,7 @@ class Product extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
 
-    //accesores
+    
      public function getStockAttribute(){
          if($this->subcategory->size){
              return ColorSize::whereHas('size.product', function(Builder $query){
@@ -58,7 +58,7 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, "imageable");
     }
-    //URL amigable
+    //URL 
     public function getRouteKeyName()
     {
         return 'slug';

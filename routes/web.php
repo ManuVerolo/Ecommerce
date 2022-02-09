@@ -5,7 +5,10 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
+use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\ShoppingCart;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +31,6 @@ Route::get('products/{product}', [ProductController::class, 'show'])->name('prod
 
 Route::get('shopping-cart', ShoppingCart::class)->name('shopping-cart');
 
+Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::get('prueba', function () {
-    \Cart::destroy();
-});
+Route::get('orders/{order}/payment', [OrderController::class, 'payment'])->name('orders.payment');

@@ -2,12 +2,19 @@
 
     @php
         // SDK de Mercado Pago
-        require  base_path('/vendor/autoload.php');
+        require base_path('vendor/autoload.php');
         // Agrega credenciales
         MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
 
         // Crea un objeto de preferencia
         $preference = new MercadoPago\Preference();
+
+        $shipments = new MercadoPago\Shipments();
+
+        $shipments->cost = $order->shipping_cost;
+        $shipments->mode = "not_specified";
+
+        $preference->shipments = $shipments;
 
         // Crea un ítem en la preferencia
         foreach ($items as $product) {
@@ -18,6 +25,13 @@
 
             $products[] = $item;
         }
+        $preference->back_urls = array(
+            "success" => route('orders.pay', $order),
+            /*"failure" => "http://www.tu-sitio/failure",
+            "pending" => "http://www.tu-sitio/pending"*/
+        );
+        $preference->auto_return = "approved";
+
         $preference->items = $products;
         $preference->save();
 
@@ -94,7 +108,7 @@
             <div class="text-gray-700">
                 <p class="text-sm font-semibold">Subtotal: ${{$order->total - $order->shipping_cost}}</p>
                 <p class="text-sm font-semibold">Envío: ${{$order->shipping_cost}}</p>
-                <p class="text-lg font-semibold uppercase">Total: {{$order->total}}</p>
+                <p class="text-lg font-semibold uppercase">Total: ${{$order->total}}</p>
                 <div class="cho-container">
 
                 </div>

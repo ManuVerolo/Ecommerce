@@ -9,7 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\WebhooksController;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\ShoppingCart;
-
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +47,3 @@ Route::middleware(['auth'])->group(function (){
     
     Route::post('webhooks', WebhooksController::class);
 });
-
-

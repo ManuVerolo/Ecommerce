@@ -99,6 +99,18 @@
             </x-jet-button>
         </div>
     </div>
+
+    <div class="mt-4" wire:ignore>
+        
+        <form action="{{route('admin.products.files', $product)}}"
+            method="POST"
+            class="dropzone"
+            id="my-awesome-dropzone">
+            @csrf
+        </form>
+    </div>
+
+
     @if($this->subcategory)
 
         @if($this->subcategory->size)
@@ -112,4 +124,15 @@
         @endif
         
     @endif
+
+    @push('script')
+        <script>
+            Dropzone.options.myGreatDropzone = { // camelized version of the `id`
+                acceptedFiles: "image/*",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+            };
+        </script>
+    @endpush
 </div>
+

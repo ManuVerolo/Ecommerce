@@ -51,5 +51,15 @@
         @livewireScripts
 
         @stack('script')
+
+        <script>
+            Livewire.on('errorSize', mensaje => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: mensaje,
+                })
+            });
+        </script>
     </body>
 </html>

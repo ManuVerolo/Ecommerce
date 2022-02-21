@@ -101,15 +101,32 @@
     </div>
 
     <div class="mt-4" wire:ignore>
-        
         <form action="{{route('admin.products.files', $product)}}"
             method="POST"
             class="dropzone"
-            id="my-awesome-dropzone">
+            id="my-great-dropzone">
             @csrf
         </form>
     </div>
-
+    @if($product->images->count())
+        <section class="bg-white shadow-xl rounded-lg p-6  mt-4">
+            <h1 class="text-center text-2xl font-semibold mb-2">Imagenes del producto</h1>
+            <ul class="flex flex-wrap">
+                @foreach ($product->images as $image)
+                    <li class="relative" wire:key="image-{{$image->id}}">
+                        <img class="w-32 h-20 object-cover" src="{{ Storage::url($image->url) }}" alt="">
+                        <x-jet-danger-button class="absolute right-2 top-2 w-2 h-5" 
+                            wire:click="deleteImage({{$image->id}})"
+                            wire:loading.attr="disabled"
+                            wire:target="deleteImage({{$image->id}})"
+                        >
+                            x
+                        </x-jet-danger-button>
+                    </li>
+                @endforeach
+            </ul>
+        </section>
+    @endif
 
     @if($this->subcategory)
 
@@ -128,10 +145,77 @@
     @push('script')
         <script>
             Dropzone.options.myGreatDropzone = { // camelized version of the `id`
+                dictDefaultMessage: "Arrastre las imagenes aquí",
                 acceptedFiles: "image/*",
                 paramName: "file", // The name that will be used to transfer the file
                 maxFilesize: 2, // MB
+                complete: function(file) {
+                    this.removeFile(file);
+                },
+                queuecomplete: function(){
+                    Livewire.emit('refreshProduct');
+                }
             };
+
+            Livewire.on('deleteSize', sizeId => {
+                Swal.fire({
+                    title: '¿Estás seguro de eliminar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    Livewire.emitTo('admin.size-product','delete', sizeId);
+                    Swal.fire(
+                        'Eliminado!',
+                        'Se ha eliminado correctamente.',
+                        'success'
+                    )
+                    }
+                })
+            })
+
+            Livewire.on('deletePivot', pivot => {
+                Swal.fire({
+                    title: '¿Estás seguro de eliminar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    Livewire.emitTo('admin.color-product','delete', pivot);
+                    Swal.fire(
+                        'Eliminado!',
+                        'Se ha eliminado correctamente.',
+                        'success'
+                    )
+                    }
+                })
+            })
+
+            Livewire.on('deleteColorSize', pivot => {
+                Swal.fire({
+                    title: '¿Estás seguro de eliminar?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Confirmar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    Livewire.emitTo('admin.color-size','delete', pivot);
+                    Swal.fire(
+                        'Eliminado!',
+                        'Se ha eliminado correctamente.',
+                        'success'
+                    )
+                    }
+                })
+            })
         </script>
     @endpush
 </div>

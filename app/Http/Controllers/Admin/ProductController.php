@@ -15,7 +15,7 @@ class ProductController extends Controller
             'file' => 'required|image|max:2048'
         ]);
 
-        $url = Storage::put('products', $request->file('file'));
+        $url = Storage::put('public/products', $request->file('file'));
         
         $product->images()->create([
             'url' => $url

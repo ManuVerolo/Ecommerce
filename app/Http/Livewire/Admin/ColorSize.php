@@ -24,7 +24,6 @@ class ColorSize extends Component
         'quantity' => 'required|numeric'
     ];
 
-
     public function save(){
         $this->validate();
         

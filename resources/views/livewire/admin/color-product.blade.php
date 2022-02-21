@@ -102,28 +102,4 @@
         </x-slot>
     </x-jet-dialog-modal>
 
-    @push('script')
-    <script>
-        Livewire.on('deletePivot', pivot => {
-            Swal.fire({
-                title: '¿Estás seguro de eliminar?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Confirmar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                Livewire.emitTo('admin.color-product','delete', pivot);
-                Swal.fire(
-                    'Eliminado!',
-                    'Se ha eliminado correctamente.',
-                    'success'
-                )
-                }
-            })
-        })
-      </script>
-    @endpush
-
 </div>

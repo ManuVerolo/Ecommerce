@@ -6,7 +6,11 @@
                     <li class="bg-white rounded-lg shadow {{ $loop->last ? '' : 'sm:mr-4' }}">
                         <article>
                                 <figure>
-                                    <img class="h-48 w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}">
+                                    @if($product->images->count())
+                                        <img class="h-48 w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}">
+                                    @else
+                                        <img class="h-48 w-full object-cover object-center" src="https://i0.wp.com/mundowin.com/wp-content/uploads/2019/06/Error-code.jpg?w=832&ssl=1">
+                                    @endif
                                 </figure>
                                 <div class="py-4 px-6">
                                     <h2 class="text-lg font-semibold">

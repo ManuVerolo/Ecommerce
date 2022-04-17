@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->float('price');
 
 
-            $table->unsignedBigInteger('subcategory_id');
+            $table->unsignedBigInteger('subcategory_id')->onDelete('cascade');
             $table->foreign('subcategory_id')->references('id')->on('subcategories');
 
             $table->unsignedBigInteger('brand_id');

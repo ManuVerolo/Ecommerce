@@ -16,17 +16,23 @@ class CategoryFilter extends Component
     public $category, $subcategoria, $marca; //Envio la info de la categoria a la vista.
     
     public $view ="grid";
+
+    protected $queryString = ['subcategoria', 'marca', 'page'];
     
     public function limpiar(){
         $this->reset(['subcategoria', 'marca']);
     }
     
+    public function updatedSubcategoria(){
+        $this->resetPage();
+    }
+
+    public function updatedMarca(){
+        $this->resetPage();
+    }
+
     public function render()
     {
-        /*$products = $this->category->products()
-                                    ->where('status', 2)
-                                    ->paginate(20);*/
-
 
         $productsQuery = Product::query()->whereHas('subcategory.category', function(Builder $query){
             $query->where('id', $this->category->id);
@@ -34,7 +40,7 @@ class CategoryFilter extends Component
 
         if ($this->subcategoria) {
             $productsQuery = $productsQuery->whereHas('subcategory', function(Builder $query){
-                $query->where('name', $this->subcategoria);
+                $query->where('slug', $this->subcategoria);
         });
         }
 

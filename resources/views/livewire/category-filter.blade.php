@@ -18,8 +18,8 @@
             <ul class=" mb-4 divide-y divide-gray-200">
                 @foreach ($category->subcategories as $subcategory)
                     <li class="py-2 ">
-                        <a class="cursor-pointer hover:text-blue-600 capitalize {{ $subcategoria == $subcategory->name ? 'text-blue-500 font-semibold' : '' }}"
-                            wire:click="$set('subcategoria', '{{ $subcategory->name }}')">{{ $subcategory->name }}</a>
+                        <a class="cursor-pointer hover:text-blue-600 capitalize {{ $subcategoria == $subcategory->slug ? 'text-blue-500 font-semibold' : '' }}"
+                            wire:click="$set('subcategoria', '{{ $subcategory->slug }}')">{{ $subcategory->name }}</a>
                     </li>
                 @endforeach
             </ul>
@@ -40,7 +40,7 @@
         <div class="md:col-span-2 lg:col-span-4">
             @if ($view == 'grid')
                 <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <li class="bg-white rounded-lg shadow">
                             <article>
                                 <figure>
@@ -55,13 +55,27 @@
                                 </div>
                             </article>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="md:col-span-2 lg:col-span-4">
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Ups!</strong>
+                                <span class="block sm:inline">No existe ningún registro con ese filtro</span>
+                            </div>
+                        </li>
+                    @endforelse
                 </ul>
             @else
                 <ul>
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <x-product-list :product="$product"/>
-                    @endforeach
+                    @empty
+                        <li class="md:col-span-2 lg:col-span-4">
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Ups!</strong>
+                                <span class="block sm:inline">No existe ningún registro con ese filtro</span>
+                            </div>
+                        </li>
+                    @endforelse
                 </ul>
             @endif
 

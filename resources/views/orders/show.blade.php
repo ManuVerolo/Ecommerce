@@ -71,6 +71,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
+                    
                     @foreach ($items as $item)
                         <tr>
                             <td>
@@ -84,7 +85,7 @@
                                             @endisset
 
                                             @isset ($item->options->color)
-                                                - {{$item->options->size}}
+                                                - {{$item->options->color}}
                                             @endisset
                                         </div>
                                     </article>

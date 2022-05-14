@@ -88,7 +88,7 @@
                                                 @endisset
     
                                                 @isset ($item->options->color)
-                                                    - {{$item->options->size}}
+                                                    - {{$item->options->color}}
                                                 @endisset
                                             </div>
                                         </article>

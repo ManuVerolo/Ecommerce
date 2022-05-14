@@ -41,6 +41,7 @@ class OrderController extends Controller
 
         $items = json_decode($order->content);
 
+
         return view('orders.show', compact('order', 'items'));
     }
 

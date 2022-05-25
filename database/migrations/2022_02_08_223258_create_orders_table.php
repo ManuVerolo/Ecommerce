@@ -44,10 +44,13 @@ class CreateOrdersTable extends Migration
 
             $table->string('references')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            /*$table->foreign('user_id')->references('id')->on('users');
             $table->foreign('city_id')->references('id')->on('cities');
             $table->foreign('department_id')->references('id')->on('departments');
-            $table->foreign('district_id')->references('id')->on('districts');
+            $table->foreign('district_id')->references('id')->on('districts');*/
+
+            //Guardar informacion envio para no tener incoveniente al eliminar alguno de los datos
+            $table->json('envio')->nullable();
             
             $table->timestamps();
 

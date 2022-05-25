@@ -24,7 +24,7 @@ class CreateCitiesTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }
 

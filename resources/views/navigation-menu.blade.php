@@ -25,6 +25,9 @@
                         Marcas
                     </x-jet-nav-link>
 
+                    <x-jet-nav-link href="{{route('admin.departments.index')}}" :active="request()->routeIs('admin.departments.*')">
+                        Provincias
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -162,6 +165,10 @@
 
             <x-jet-responsive-nav-link href="{{route('admin.brands.index')}}" :active="request()->routeIs('admin.brands.*')">
                 Marcas
+            </x-jet-responsive-nav-link>
+            
+            <x-jet-responsive-nav-link href="{{route('admin.departments.index')}}" :active="request()->routeIs('admin.departments.*')">
+                Provincias
             </x-jet-responsive-nav-link>
         </div>
 

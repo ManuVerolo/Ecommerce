@@ -23,7 +23,7 @@
         @if ($quantity)
             {{$quantity}}
         @else
-            {{$product->stock}}
+            {{$product->quantity}}
         @endif
     </p>
 

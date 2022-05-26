@@ -36,8 +36,8 @@
         $preference->save();
 
     @endphp
-    <div class="grid grid-cols-5 gap-6 container py-8">
-        <div class="col-span-3">
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-6 container py-8">
+        <div class="xl:col-span-3 lg:order-1 order-2">
             <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
                 <p class="text-gray-700 uppercase"><span class="font-semibold">Número de orden:</span> Orden-{{$order->id}}</p>
             </div>
@@ -105,10 +105,10 @@
 
         </div>
 
-        <div class="col-span-2">
+        <div class="xl:col-span-2 lg:order-2 order-1">
             <div class="bg-white rounded-lg shadow-lg p-6 ">
                 <div class="flex justify-between items-center">
-                    <img src="{{asset('img/mercadopago.png')}}" class="h-12" alt="">
+                    <img src="{{asset('img/mercadopago.png')}}" class="mercado-pago-foto" alt="">
                     <div class="text-gray-700">
                         <p class="text-sm font-semibold">Subtotal: ${{$order->total - $order->shipping_cost}}</p>
                         <p class="text-sm font-semibold">Envío: ${{$order->shipping_cost}}</p>

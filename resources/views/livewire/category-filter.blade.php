@@ -2,7 +2,7 @@
     <div class="bg-white rounded-lg shadow-lg">
         <div class="px-6 py-2 flex justify-between items-center mb-6">
             <h2 class="font-semibold text-gray-700 uppercase">{{ $category->name }}</h2>
-            <div class="grid grid-cols-2 border-gray-200 divide-x divide-x-200 text-gray-500">
+            <div class="hidden md:block grid grid-cols-2 border-gray-200 divide-x divide-x-200 text-gray-500">
                 <i class="fas fa-border-all p-3 cursor-pointer {{ $view == 'grid' ? 'text-blue-500' : '' }}"
                     wire:click="$set('view', 'grid')"></i>
                 <i class="fas fa-th-list p-3 cursor-pointer {{ $view == 'list' ? 'text-blue-500' : '' }}"

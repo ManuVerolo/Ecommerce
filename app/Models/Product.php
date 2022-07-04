@@ -58,9 +58,15 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, "imageable");
     }
+    
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
+
     //URL 
     public function getRouteKeyName()
     {
         return 'slug';
     }
+
 }

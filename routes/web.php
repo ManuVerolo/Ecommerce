@@ -6,10 +6,12 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WebhooksController;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\ShoppingCart;
 use App\Models\Order;
+use App\Models\Review;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,6 @@ Route::middleware(['auth'])->group(function (){
     
     Route::post('webhooks', WebhooksController::class);
 });
+
+Route::post('reviews/{product}', [ReviewController::class, 'store'])->name('reviews.store');
+

@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Http\Request;
+use App\Services\PDFFactory;
 
 class UserComponent extends Component
 {
@@ -16,7 +18,6 @@ class UserComponent extends Component
     {
         $this->resetPage();
     }
-
     
     public function assingRole(User $user, $value){
         if($value == 1){

@@ -1,13 +1,19 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight ">
             Listado de Usuarios
         </h2>
     </x-slot>
     <div class="container py-12">
         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <div class="px-6 py-4 w-f">
-                <x-jet-input class="w-full" type="text" placeholder="Buscar usuario..." wire:model="search" />
+            <div class="flex text-center justify-between px-6 py-4 w-f">
+                <div class="">
+                    <x-jet-input class="w-500" type="text" placeholder="Buscar usuario..." wire:model="search" />
+                </div>
+                <form action="{{ route('factoryMethod', 'dompdf') }}" method="POST">
+                    @csrf
+                    <x-jet-button>Descargar con DomPDF</x-jet-button>
+                </form>
             </div>
             <x-table-responsive>
                 @if($users->count())

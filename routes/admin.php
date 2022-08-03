@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Admin\StatisticsController;
 use App\Http\Livewire\Admin\BrandComponent;
 use App\Http\Livewire\Admin\CityComponent;
 use App\Http\Livewire\Admin\CreateProduct;
@@ -42,5 +42,7 @@ Route::get('departments/{department}', ShowDepartment::class)->name('admin.depar
 Route::get('cities/{city}', CityComponent::class)->name('admin.cities.show');
 
 Route::get('users', UserComponent::class)->name('admin.users.index');
+
+Route::get('statistics', StatisticsController::class)->name('admin.statistics.index');
 
 ?>
